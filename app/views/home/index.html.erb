@@ -1,0 +1,45 @@
+<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<div class="container">
+  <ul class="posts">
+    <% Post.all.each do |post|%>
+    <li class="post" he >
+      <div class="instagram-card">
+    <div class="instagram-card-header">
+      <a href="https://www.instagram.com/followmeto/"><img src=" <%= post.profile.profile_pic %> " class="instagram-card-user-image"/>followmeto</a>
+      <div class="instagram-card-time">58 min</div>
+    </div>
+
+    <div class="intagram-card-image">
+      <img src=" <%= post.post_img %> " height="450px" width="100%"/>
+    </div>
+
+    <div class="instagram-card-content">
+      <i class="fa fa-heart-o" height="50px" ></i>
+      <i class="fa fa-heart" height="50px" ></i>
+      <p class="likes">18.068 Me gusta</p>
+      <p> <%= post.caption %> 😜❄️</p>
+      <p class="comments">ver los 48 comentarios</p>
+      <p><a class="user-comment" href="https://www.instagram.com/anitzakm/">sanguine.j@loaf_made</a> wowwwwww</p>
+      <!-- <br><a class="user-comment" href="https://www.instagram.com/anitzakm/">spainstakeoverWow</a> 😍</br>
+      <br><a class="user-comment" href="https://www.instagram.com/anitzakm/">edieandottotravelsSo</a> cool ❄️</br> -->
+    <hr>
+    </div>
+
+    <div class="instagram-card-footer">
+      <a class="footer-action-icons" href="#"><i class="fa fa-heart-o"></i></a>
+      <input class="comments-input" type="text" placeholder="Añade un comentario..."/>
+      <a class="footer-action-icons" href="#"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+
+  </div>
+    </li>
+    <% end %>
+    <!-- <li class="post">
+      <div class="post-content">
+        <header><a href="https://twitter.com/@kamciesla">@kamciesla </a></header><img src="https://static.pexels.com/photos/5927/food-salad-red-lunch-large.jpg"/>
+        <footer> <a href="https://kamilciesla.pl"><i class="fa fa-globe"></i></a><a href="https://pl.linkedin.com/in/kamilciesla"><i class="fa fa-linkedin"></i></a><a href="https://twitter.com/@kamciesla"><i class="fa fa-twitter"></i></a><a href="https://www.behance.net/kamciesla"><i class="fa fa-behance"></i></a><a href="https://dribbble.com/kamilciesla"><i class="fa fa-dribbble"></i></a></footer>
+      </div><a class="post-avatar" href="http://kamilciesla.pl"></a>
+    </li> -->
+  </ul>
+  <p class="no-posts">Sorry... there are no more posts to show right now.</p>
+</div>

@@ -1,0 +1,18 @@
+<div class="explore">
+
+<section class="post-list">
+<% @posts.each do |post| %>
+  <a href="" class="post">
+    <figure class="post-image">
+      <img src=" <%= post.post_img %> " height="300px" width="300px" alt="">
+    </figure>
+    <span class="post-overlay">
+      <p>
+        <span class="post-likes">150</span>
+        <span class="post-comments">10</span>
+      </p>
+    </span>
+  </a>
+<% end %>
+</section>
+</div>

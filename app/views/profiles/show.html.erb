@@ -1,0 +1,55 @@
+<header>
+	<div class="container">
+		<div class="profile">
+			<div class="profile-image">
+				<%= image_tag "#{@profile.profile_pic}" %>
+			</div>
+			<div class="profile-user-settings">
+				<h1 class="profile-user-name"><%= @profile.username %></h1>
+				<%= link_to edit_profile_path(@profile) do %>
+				<button class="btn profile-edit-btn">Edit Profile</button>
+				<% end %>
+				<%= link_to new_post_path(@profile) do %>
+				<button class="btn profile-settings-btn" aria-label="profile settings"><h1>+</h1></button>
+				<% end %>
+			</div>
+			<div class="profile-stats">
+				<ul>
+					<li><span class="profile-stat-count"> <%= @profile.post %>	</span> posts</li>
+					<li><span class="profile-stat-count">188</span> followers</li>
+					<li><span class="profile-stat-count">206</span> following</li>
+				</ul>
+			</div>
+			<div class="profile-bio">
+				<p><span class="profile-real-name"><%= @profile.name %></span> <%= @profile.bio.first(150) %></p>
+			</div>
+		</div>
+		<!-- End of profile section -->
+	</div>
+	<!-- End of container -->
+</header>
+<main>
+	<div class="container">
+
+		<section class="post-list">
+			<% @posts.each do |post| %>
+			<a href="" class="post">
+				<figure class="post-image">
+					<img src=" <%= post.post_img %> " height="300px" width="300px" alt="">
+				</figure>
+				<span class="post-overlay">
+					<p>
+						<span class="post-likes">150</span>
+						<span class="post-comments">10</span>
+					</p>
+				</span>
+			</a>
+			<% end %>
+		</section>
+
+		<!-- <div class="loader"></div> -->
+
+	</div>
+	<!-- End of container -->
+
+</main>
