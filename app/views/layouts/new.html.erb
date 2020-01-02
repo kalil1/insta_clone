@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag "forms" %>
+<main>
+  <div id="wrapper">
+    <div class="sub-content">
+      <div class="s-part">
+        <img id="blah" src="" alt="">
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="header">
+        <h1>Profile</h1>
+      </div>
+      <div class="l-part">
+        <div class="box">
+          <header>
+            <h3>Image Uploader </h3>
+          </header>
+
+          <div class="content">
+
+      <!-- Custom File Uploader  -->
+      <form id="form1" runat="server">
+        <div class="left">
+      <img id="img-uploaded" src="http://placehold.it/350x350" alt="your image" />
+        </div>
+        <div class="right">
+
+          <input type="text" class="img-path" placeholder="Image Path">
+      <span class="file-wrapper">
+        <input type="file" name="photo" id="imgInp" class="uploader" />
+        <span class="btn btn-large btn-alpha">Upload Image</span>
+      </span>
+        </div>
+      </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

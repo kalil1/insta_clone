@@ -1,55 +1,109 @@
+<%= stylesheet_link_tag "profiles" %>
+<div class="container">
 <header>
-	<div class="container">
 		<div class="profile">
 			<div class="profile-image">
 				<%= image_tag "#{@profile.profile_pic}" %>
 			</div>
+			<h1 class="profile-user-name-d"><%= @profile.username %></h1>
 			<div class="profile-user-settings">
-				<h1 class="profile-user-name"><%= @profile.username %></h1>
+				<h1 class="profile-user-name-m"><%= @profile.username %></h1>
+				<div class="follow">
+				<% if @profile.following(current_user.profile) == "following" %>
+				<%= link_to follow_path(:user1 => current_user.profile.id, :user2 => @profile.id, :type => "follow"), {:method => :post} do %>
+				<p class="btn-follow is-not-following" style="display:none;" id="is-not-following<%= @profile.id %>" onclick="follow(<%= @profile.id %>);">Follow</p>
+				<% end %>
+				<%= link_to unfollow_path(:user1 => current_user.profile.id, :user2 => @profile.id, :type => "follow"), {:method => :post} do %>
+				<p class="btn-follow is-following" style="display:block;" id="is-following<%= @profile.id %>" onclick="follow(<%= @profile.id %>);">Following</p>
+				<% end %>
+				<% else if @profile.following(current_user.profile) == "not_following" %>
+				<%= link_to unfollow_path(:user1 => current_user.profile.id, :user2 => @profile.id, type: "follow"), {:method => :post} do %>
+				<p class="btn-follow is-following" style="display:none;" id="is-following<%= @profile.id %>" onclick="follow(<%= @profile.id %>);">Following</p>
+				<% end %>
+				<%= link_to follow_path(:user1 => current_user.profile.id, :user2 => @profile.id, type: "follow"), {:method => :post} do %>
+				<p class="btn-follow is-not-following" style="display:block;" id="is-not-following<%= @profile.id %>" onclick="follow(<%= @profile.id %>);">Follow</p>
+				<% end %>
+				<% else %>
 				<%= link_to edit_profile_path(@profile) do %>
-				<button class="btn profile-edit-btn">Edit Profile</button>
+				<button class="btn profile-edit-btn">Profile</button>
 				<% end %>
 				<%= link_to new_post_path(@profile) do %>
-				<button class="btn profile-settings-btn" aria-label="profile settings"><h1>+</h1></button>
+				<button class="btn profile-settings-btn" aria-label="profile settings">+</button>
 				<% end %>
-			</div>
-			<div class="profile-stats">
-				<ul>
-					<li><span class="profile-stat-count"> <%= @profile.post %>	</span> posts</li>
-					<li><span class="profile-stat-count">188</span> followers</li>
-					<li><span class="profile-stat-count">206</span> following</li>
-				</ul>
-			</div>
+				<% end %>
+				<% end %>
+				</div>
+				<div class="profile-stats">
+					<ul>
+						<li><span class="profile-stat-count"> <%= @profile.post %>	</span> posts</li>
+						<li><span class="profile-stat-count"><%= @profile.followers.count %></span> followers</li>
+						<li><span class="profile-stat-count"><%= @profile.followings.count %></span> following</li>
+					</ul>
 			<div class="profile-bio">
 				<p><span class="profile-real-name"><%= @profile.name %></span> <%= @profile.bio.first(150) %></p>
 			</div>
 		</div>
-		<!-- End of profile section -->
 	</div>
+		</div>
+		<!-- End of profile section -->
 	<!-- End of container -->
 </header>
 <main>
-	<div class="container">
 
-		<section class="post-list">
+
+		<div class="gallery">
 			<% @posts.each do |post| %>
-			<a href="" class="post">
-				<figure class="post-image">
-					<img src=" <%= post.post_img %> " height="300px" width="300px" alt="">
-				</figure>
-				<span class="post-overlay">
-					<p>
-						<span class="post-likes">150</span>
-						<span class="post-comments">10</span>
-					</p>
-				</span>
-			</a>
+			<div class="gallery-item" tabindex="0">
+
+				<img src="<%= post.post_img %>" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
 			<% end %>
-		</section>
+			<div class="gallery-item" tabindex="0" style="visibility:hidden;">
 
-		<!-- <div class="loader"></div> -->
+				<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
 
-	</div>
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="gallery-item" tabindex="0" style="visibility:hidden;">
+
+				<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- End of gallery -->
+
+		<div class="loader"></div>
+
 	<!-- End of container -->
 
 </main>
+</div>

@@ -1,0 +1,36 @@
+<nav>
+  <ul class="mobile-bottom-nav">
+
+<li>
+<div class="">
+  <%= link_to root_path do %>
+  <i class="fas fa-home"></i>
+  <% end %>
+</div>
+</li>
+<li class="">
+<div class="">
+  <i class="fas fa-search"></i>
+</div>
+</li>
+<li class="">
+<div class="">
+  <%= link_to new_post_path do %>
+  <i class="far fa-plus-square"></i>
+  <% end %>
+</div>
+</li>
+<li class="">
+<div class="">
+  <i class="fa fa-heart"></i>
+</div>
+</li>
+<li class="">
+<div class="">
+  <%= link_to Profile.find(current_user.profile.id) do %>
+  <img src=" <%= current_user.profile.profile_pic %> " class="instagram-card-user-image"/>
+  <% end %>
+</div>
+</li>
+</ul>
+</nav>

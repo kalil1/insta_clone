@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <%= render "home/navbar" %>
+    <%= render "home/navbar" if user_signed_in? && !current_user.profile.nil? %>
     <%= yield %>
+    <%= render "home/mobile-navbar" if user_signed_in? && !current_user.profile.nil? %>
   </body>
 </html>

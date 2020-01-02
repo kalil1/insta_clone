@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "forms" %>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+
+<div id="wrapper">
+  <div class="main-content_signin">
+    <div class="header">
+      <img src="https://i.imgur.com/zqpwkLQ.png" />
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="l-part">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-1" %>
+      <div class="overlap-text">
+        <%= f.password_field :password, autocomplete: "current-password", class: "input-2" %>
+        <a href="#">Forgot?</a>
+      </div>
+        <% if devise_mapping.rememberable? %>
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+        <% end %>
+          <%= f.submit "Log in", class: "btn" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="sub-content">
+    <div class="s-part">
+      Don't have an account?<a href="<%= new_registration_path(resource_name) %>">Sign up</a>
+    </div>
+  </div>
+</div>

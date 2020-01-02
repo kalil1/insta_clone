@@ -12,10 +12,10 @@
     <i class="fa fa-compass"></i>
     <% end %>
     <%= link_to posts_path do %>
-    <i class="fa fa-heart-o"></i>
+    <i class="fa fa-heart"></i>
     <% end %>
-    <%= link_to profile_path(current_user.profile.id) do %>
-    <i class="fa fa-user-o"></i>
+    <%= link_to_if !user_signed_in?, {}, {} do %>
+      <a href="<%= profile_path(current_user.profile.id) %>" class='fa fa-user'></a>
     <% end %>
   </section>
 </nav>

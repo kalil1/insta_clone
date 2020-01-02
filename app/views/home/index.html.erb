@@ -1,11 +1,14 @@
-<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<%= stylesheet_link_tag "posts" %>
 <div class="container">
   <ul class="posts">
-    <% Post.all.each do |post|%>
-    <li class="post" he >
+    <% @posts.sort_by(&:created_at).reverse.each do |post|%>
+    <li class="post">
       <div class="instagram-card">
     <div class="instagram-card-header">
-      <a href="https://www.instagram.com/followmeto/"><img src=" <%= post.profile.profile_pic %> " class="instagram-card-user-image"/>followmeto</a>
+      <img src=" <%= post.profile.profile_pic %> " class="instagram-card-user-image"/>
+      <%= link_to Profile.find(post.profile.id) do %>
+      <%= " #{post.profile.username}" %>
+      <% end %>
       <div class="instagram-card-time">58 min</div>
     </div>
 
@@ -14,21 +17,34 @@
     </div>
 
     <div class="instagram-card-content">
-      <i class="fa fa-heart-o" height="50px" ></i>
-      <i class="fa fa-heart" height="50px" ></i>
-      <p class="likes">18.068 Me gusta</p>
-      <p> <%= post.caption %> 😜❄️</p>
-      <p class="comments">ver los 48 comentarios</p>
-      <p><a class="user-comment" href="https://www.instagram.com/anitzakm/">sanguine.j@loaf_made</a> wowwwwww</p>
-      <!-- <br><a class="user-comment" href="https://www.instagram.com/anitzakm/">spainstakeoverWow</a> 😍</br>
-      <br><a class="user-comment" href="https://www.instagram.com/anitzakm/">edieandottotravelsSo</a> cool ❄️</br> -->
+      <% if !post.liked(current_user) %>
+      <%= link_to like_path(:user1 => current_user.id, :postid => post.id, :type => "like"), {:method => :post} do %>
+      <i id="like<%= post.id %>" class="fa fa-heart-o" height="50px" onclick="like(<%= post.id %>);" style="display:inline-block;"></i>
+      <% end %>
+      <%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, :type => "like"), {:method => :post} do %>
+      <i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" onclick="like(<%= post.id %>);" style="display:none;"></i>
+      <% end %>
+      <% else %>
+      <%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, type: "like"), {:method => :post} do %>
+      <i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" onclick="like(<%= post.id %>);" style="display:inline-block;"></i>
+      <% end %>
+      <%= link_to like_path(:user1 => current_user.id, :postid => post.id, type: "like"), {:method => :post} do %>
+      <i id="like<%= post.id %>" class="fa fa-heart-o" height="50px" onclick="like(<%= post.id %>);" style="display:none;"></i>
+      <% end %>
+      <% end %>
+      <%# <%= render 'likebutton' %>
+      <p class="likes"><%= post.likes.count %> Likes</p>
+      <p><a class="user-comment" href="<%= Profile.find(post.profile.id) %>"><%= post.profile.username %></a><%= " #{post.caption}" %></p>
+      <%= render "comments/post_comments", post: post %>
     <hr>
     </div>
 
     <div class="instagram-card-footer">
-      <a class="footer-action-icons" href="#"><i class="fa fa-heart-o"></i></a>
-      <input class="comments-input" type="text" placeholder="Añade un comentario..."/>
+      <%= form_tag comment_path, remote: true do %>
+      <%= hidden_field_tag :post_id, post.id %>
+      <%= text_field_tag :body %>
       <a class="footer-action-icons" href="#"><i class="fa fa-ellipsis-h"></i></a>
+      <% end %>
     </div>
 
   </div>
@@ -41,5 +57,4 @@
       </div><a class="post-avatar" href="http://kamilciesla.pl"></a>
     </li> -->
   </ul>
-  <p class="no-posts">Sorry... there are no more posts to show right now.</p>
 </div>

@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "posts" %>
 <div class="explore">
 
 <section class="post-list">
@@ -8,8 +9,8 @@
     </figure>
     <span class="post-overlay">
       <p>
-        <span class="post-likes">150</span>
-        <span class="post-comments">10</span>
+        <span class="post-likes"> <%= post.likes.count %> </span>
+        <span class="post-comments"><%= post.comments.count %></span>
       </p>
     </span>
   </a>

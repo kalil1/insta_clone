@@ -10,14 +10,104 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
- .center {
-   margin: auto;
-   text-align: center;
-   width: 30%;
-   border: 3px solid green;
-   padding: 10px;
- }
+  :root {
+      font-size: 10px;
+  }
+
+  *,
+  *::before,
+  *::after {
+      box-sizing: border-box;
+  }
+  a {
+    color: inherit;
+  }
+  .center {
+    margin: auto;
+    text-align: center;
+    width: 30%;
+    border: 3px solid green;
+    padding: 10px;
+  }
+
+  body{
+   //dev
+   padding:10px;
+   padding-bottom:50px;
+  }
+
+  .mobile-bottom-nav {
+    display: none;
+    list-style: none;
+    height: 8%;
+    padding-top: 3%
+  }
+
+  .mobile-bottom-nav img {
+    height: 60%;
+    width: 60%;
+  }
+
+  .mobile-bottom-nav li {
+    width: 20%;
+    font-size: 85px;
+    text-align: center;
+  }
+
+.navbar a {
+text-decoration: none;
+}
+
+  .container {
+      max-width: 93.5rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #ddd;
+  }
+  .navbar .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  .navbar .logo-section div {
+    align-self: stretch;
+    width: 1px;
+    background: black;
+    margin: 0 20px;
+  }
+  .navbar .icons-section .fa {
+    text-decoration: none;
+    color: inherit;
+    font-size: 2rem;
+    margin: 0 10px;
+  }
+  .navbar .logo {
+    width: 40px;
+  }
+  .navbar .logoname {
+    width: 130px;
+  }
+
+  .search-section {
+    width: 25%;
+  }
+
+  .navbar .input-search {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solix #eee;
+    height: 15px;
+    outline: 0;
+  }
+  .navbar .input-search:focus {
+    text-align: left;
+  }

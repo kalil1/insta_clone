@@ -10,30 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_032206) do
+ActiveRecord::Schema.define(version: 2019_12_18_014839) do
 
-  create_table "posts", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "body"
+    t.bigint "post_id"
+    t.bigint "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["profile_id"], name: "index_comments_on_profile_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "caption"
-    t.integer "profile_id"
+    t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "post_img"
     t.index ["profile_id"], name: "index_posts_on_profile_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "website"
     t.text "bio"
     t.string "phone"
     t.string "profile_pic"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "unions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user1"
+    t.integer "user2"
+    t.integer "postid"
+    t.string "union_type", default: "like"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,4 +66,8 @@ ActiveRecord::Schema.define(version: 2019_09_07_032206) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "profiles"
+  add_foreign_key "posts", "profiles"
+  add_foreign_key "profiles", "users"
 end

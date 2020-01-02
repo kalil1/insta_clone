@@ -15,29 +15,50 @@
 //= require turbolinks
 //= require_tree .
 
+const like = (id) => {
+  if (document.querySelector("#like" + id).style.display == "inline-block") {
+    document.querySelector("#like" + id).style.display = "none"
+    document.querySelector("#unlike" + id).style.display = "inline-block"
+  } else if (document.querySelector("#unlike" + id).style.display == "inline-block") {
+    document.querySelector("#like" + id).style.display = "inline-block"
+    document.querySelector("#unlike" + id).style.display = "none"
+  };
+};
 
-document.getElementById(".post-avatar").each(function() {
-  var avatar = $(this),
-    avatarWatcher = scrollMonitor.create(avatar.parent(), {
-      top: 20,
-      bottom: -avatar.height() - 20
-    });
+const follow = (id) => {
+  if (document.querySelector("#is-following" + id).style.display == "block") {
+    document.querySelector("#is-following" + id).style.display = "none"
+    document.querySelector("#is-not-following" + id).style.display = "block"
+  } else if (document.querySelector("#is-not-following" + id).style.display == "block") {
+    document.querySelector("#is-following" + id).style.display = "block"
+    document.querySelector("#is-not-following" + id).style.display = "none"
+  };
+};
 
-  avatarWatcher.stateChange(function() {
-    if (avatarWatcher.isInViewport) {
-      if (avatarWatcher.isInViewport && avatarWatcher.isAboveViewport) {
-        avatar
-          .removeClass("post-avatar--absolute")
-          .addClass("post-avatar--fixed");
-      } else if (!avatarWatcher.isAboveViewport) {
-        avatar
-          .removeClass("post-avatar--absolute")
-          .removeClass("post-avatar--fixed");
-      }
-    } else {
-      avatar
-        .removeClass("post-avatar--fixed")
-        .addClass("post-avatar--absolute");
+function readURL(input) {
+     if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+      document.querySelector('#blah').src = e.target.result;
+      };
+     reader.readAsDataURL(input.files[0]);
     }
-  });
-});
+  }
+
+  const comment = (post_id) => {
+  const content_response = document.getElementById("content_response" + post_id);
+  content_response.style.display = "none";
+  let req = new XMLHttpRequest;
+  let url = "/post/comments";
+  req.open('post', url, true);
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  let token = document.getElementsByName("csrf-token")[0].content;
+  req.setRequestHeader('X-CSRF-Token', token);
+  req.onreadystatechange = function() {
+    if (req.readyState === XMLHttpRequest.DONE) {
+      content_response.innerHTML = req.responseText;
+      content_response.style.display = 'block';
+    }
+  };
+  req.send({"id": post_id});
+};

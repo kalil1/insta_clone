@@ -1,0 +1,10 @@
+<% post = post || @post %>
+<div id="content_response<%= post.id %>">
+
+<p class="comments"><%= "#{post.comments.count} comments" %></p>
+<% post.comments.last(3).each do |comment| %>
+<p><a class="user-comment" href="https://www.instagram.com/anitzakm/"> <%= comment.profile.username %> </a><%= " #{comment.body}" %></p>
+<!-- <br><a class="user-comment" href="https://www.instagram.com/anitzakm/">spainstakeoverWow</a>😜❄️😍</br>
+<br><a class="user-comment" href="https://www.instagram.com/anitzakm/">edieandottotravelsSo</a> cool ❄️</br> -->
+<% end %>
+</div>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User1:</strong>
+  <%= @union.user1 %>
+</p>
+
+<p>
+  <strong>User2:</strong>
+  <%= @union.user2 %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @union.union_type %>
+</p>
+
+<%= link_to 'Edit', edit_union_path(@union) %> |
+<%= link_to 'Back', unions_path %>
