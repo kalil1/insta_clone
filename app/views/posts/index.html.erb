@@ -2,7 +2,7 @@
 <div class="explore">
 
 <section class="post-list">
-<% @posts.each do |post| %>
+<% @posts.reverse.each do |post| %>
   <a href="" class="post">
     <figure class="post-image">
       <img src=" <%= post.post_img %> " height="300px" width="300px" alt="">
