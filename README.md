@@ -16,28 +16,28 @@ INSTACLONE is one of my personal projects, it's a clone of instagram I work on i
 ## Project Photos & Details
 
 * Log in or sign.
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot12.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot13.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot12.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot13.png)
 * Create a profile.
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot14.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot14.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot15.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot17.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot21.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot14.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot14.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot15.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot17.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot21.png)
 * Comment on other users post.
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot16.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot16.png)
 * View and follow other user profiles.
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot18.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot20.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot18.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot20.png)
 
 * I used the gem Faker to fill the app with dummy data creating 100 fake profiles when you seed the database.
 * Each profile has
 - a random username, bio phrase,
 - 3 post, with a random caption and amount of likes
 - a random amount of followings and followers from the 100 fake user profiles.
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot10.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot8.png)
-![INSTACLONE](https://github.com/kalil1/insta_clone/blob/master/app/assets/images/Screen-Shot23.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot10.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot8.png)
+![INSTACLONE](https://github.com/kalil1/insta_clone/blob/read_me_changes/app/assets/images/Screen-Shot23.png)
 
 ## CarrierWave
 * All profiles and post without pictures gets saved with either the default profile or post image. When working with images, it's a good idea to provide a default url, a fallback in case no file has been uploaded. You can do this easily by overriding the `default_url` method in your uploader:
