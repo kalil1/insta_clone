@@ -7,10 +7,12 @@ class UnionsController < ApplicationController
 
   def unlike
     @union = Union.where(:user1 => params['user1'], :postid => params['postid'], union_type: "like")[0]
-    @union.destroy if !@union.nil?
-    # respond_to do |format|
-    #   format.js { render :js => "my_function();" }
-    # end
+    respond_to do |format|
+      if !@union.nil?
+        @union.destroy 
+        format.js { render :js => "like(#{params['postid']});" }
+      end
+    end
   end
 
   def like
@@ -18,10 +20,11 @@ class UnionsController < ApplicationController
     @union.user1 = params['user1']
     @union.user2 = params['user2']
     @union.postid = params['postid']
-    @union.save
-    # respond_to do |format|
-    #   format.js { render :js => "my_function();" }
-    # end
+    respond_to do |format|
+      if @union.save
+        format.js { render :js => "like(#{params['postid']});" }
+      end
+    end
   end
 
   def unfollow

@@ -1,0 +1,16 @@
+<% if !post.liked(current_user) %>
+<%= link_to like_path(:user1 => current_user.id, :postid => post.id, :type => "like"), :method => :post, remote: true do %>
+<i id="like<%= post.id %>" class="fa fa-heart-o" height="50px" style="display:inline-block;"></i>
+<% end %>
+<%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, :type => "like"), :method => :post, remote: true do %>
+<i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" style="display:none;"></i>
+<% end %>
+<% else %>
+<%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, type: "like"), :method => :post, remote: true do %>
+<i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" style="display:inline-block;"></i>
+<% end %>
+<%= link_to like_path(:user1 => current_user.id, :postid => post.id, type: "like"), :method => :post, remote: true do %>
+<i id="like<%= post.id %>" class="fa fa-heart-o" height="50px"  style="display:none;"></i>
+<% end %>
+<% end %>
+<p class="likes"><%= post.likes.count %> Likes</p>

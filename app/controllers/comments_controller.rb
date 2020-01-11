@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     comment.body = params[:body]
     respond_to do |format|
       if comment.save
-        format.js { render :js => "comment(#{params[:post_id]},#{comment.profile_id});" }
+        format.js { render :js => "comment(#{post.id});" }
       end
     end
   end

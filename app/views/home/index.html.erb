@@ -17,23 +17,7 @@
     </div>
 
     <div class="instagram-card-content">
-      <% if !post.liked(current_user) %>
-      <%= link_to like_path(:user1 => current_user.id, :postid => post.id, :type => "like"), {:method => :post} do %>
-      <i id="like<%= post.id %>" class="fa fa-heart-o" height="50px" onclick="like(<%= post.id %>);" style="display:inline-block;"></i>
-      <% end %>
-      <%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, :type => "like"), {:method => :post} do %>
-      <i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" onclick="like(<%= post.id %>);" style="display:none;"></i>
-      <% end %>
-      <% else %>
-      <%= link_to unlike_path(:user1 => current_user.id, :postid => post.id, type: "like"), {:method => :post} do %>
-      <i id="unlike<%= post.id %>" class="fa fa-heart" height="50px" onclick="like(<%= post.id %>);" style="display:inline-block;"></i>
-      <% end %>
-      <%= link_to like_path(:user1 => current_user.id, :postid => post.id, type: "like"), {:method => :post} do %>
-      <i id="like<%= post.id %>" class="fa fa-heart-o" height="50px" onclick="like(<%= post.id %>);" style="display:none;"></i>
-      <% end %>
-      <% end %>
-      <%# <%= render 'likebutton' %>
-      <p class="likes"><%= post.likes.count %> Likes</p>
+      <%= render 'likebutton', post: post %>
       <p><a class="user-comment" href="<%= Profile.find(post.profile.id) %>"><%= post.profile.username %></a><%= " #{post.caption}" %></p>
       <%= render "comments/post_comments", post: post %>
     <hr>
