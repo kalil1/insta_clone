@@ -111,3 +111,408 @@ text-decoration: none;
   .navbar .input-search:focus {
     text-align: left;
   }
+
+   /* iphone 3 */
+      @media only screen and (min-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 1) {
+
+       }
+
+      /* iphone 4 */
+      @media only screen and (min-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 2) {
+
+       }
+
+      /* iphone 5 */
+      @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+
+       }
+
+      /* iphone 6, 6s, 7, 8 */
+      @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+
+       }
+
+      /* iphone 6+, 6s+, 7+, 8+ */
+      @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+        .follow {
+          padding-top: 10%;
+          padding-left: 10%;
+        }
+        .profile-settings-btn {
+          display: none;
+        }
+        :root {
+          font-size: 20px;
+        }
+        .profile-image img {
+            height: 100%;
+            width: 100%;
+        }
+        .profile {
+               display: flex;
+               flex-wrap: wrap;
+               padding: 4rem 0;
+           }
+
+           .profile::after {
+               display: none;
+           }
+
+           .profile-image,
+           .profile-user-settings,
+           .profile-bio,
+           .profile-stats {
+               float: none;
+               width: auto;
+           }
+
+           .profile-image img {
+               width: 75%;
+           }
+
+           .profile-user-settings {
+               flex-basis: calc(100% - 10.7rem);
+               display: flex;
+               flex-wrap: wrap;
+               margin-top: 1rem;
+           }
+
+           .profile-user-name-m {
+             display: inline-block;
+           }
+
+           .profile-user-name-d {
+             display: none;
+           }
+
+           .profile-edit-btn {
+               order: 1;
+               padding: 0;
+               text-align: center;
+               margin-top: 1rem;
+           }
+
+           .profile-edit-btn {
+               margin-left: 0;
+           }
+
+           .profile-bio {
+               margin-top: 1.5rem;
+           }
+
+           .profile-edit-btn,
+           .profile-bio,
+           .profile-stats {
+               flex-basis: 100%;
+           }
+
+           .profile-stats {
+               order: 1;
+               margin-top: 1.5rem;
+           }
+
+           .profile-stats ul {
+               display: flex;
+               text-align: center;
+               padding: 1.2rem 0;
+               border-top: 0.1rem solid #dadada;
+               border-bottom: 0.1rem solid #dadada;
+           }
+
+           .profile-stats li {
+               flex: 1;
+               margin: 0;
+           }
+
+           .profile-stat-count {
+               display: block;
+           }
+
+  @supports (display: grid) {
+      .profile {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-template-rows: repeat(3, auto);
+          grid-column-gap: 3rem;
+          align-items: center;
+      }
+
+      .profile-image {
+          grid-row: 1 / -1;
+      }
+
+      .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+          grid-gap: 2rem;
+      }
+
+      .profile-image,
+      .profile-user-settings,
+      .profile-stats,
+      .profile-bio,
+      .gallery-item,
+      .gallery {
+          width: auto;
+          margin: 0;
+      }
+
+      @media (max-width: 40rem) {
+          .profile {
+              grid-template-columns: auto 1fr;
+              grid-row-gap: 1.5rem;
+          }
+
+          .profile-image {
+              grid-row: 1 / 2;
+          }
+
+          .profile-user-settings {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              grid-gap: 1rem;
+          }
+
+          .profile-edit-btn,
+          .profile-stats,
+          .profile-bio {
+              grid-column: 1 / -1;
+          }
+
+          .profile-user-settings,
+          .profile-edit-btn,
+          .profile-settings-btn,
+          .profile-bio,
+          .profile-stats {
+              margin: 0;
+          }
+      }
+  }
+
+       }
+
+      /* iphone X */
+      @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        .follow {
+          padding-top: 10%;
+          padding-left: 10%;
+        }
+        .profile-settings-btn {
+          display: none;
+        }
+        :root {
+          font-size: 20px;
+        }
+        .profile-image img {
+            height: 100%;
+            width: 100%;
+        }
+        .navbar {
+          display: none;
+        }
+        .mobile-bottom-nav{
+        	position:fixed;
+        	bottom:0;
+        	left:0;
+        	right:0;
+        	z-index:1000;
+          margin: 0;
+
+        	//give nav it's own compsite layer
+        	will-change:transform;
+        	transform: translateZ(0);
+
+        	display:flex;
+
+        	height: 10%;
+
+        	box-shadow: 0 -2px 5px -2px #333;
+        	background-color:#fff;
+
+        	&__item{
+        		flex-grow:1;
+        		text-align:center;
+        		font-size:12px;
+
+        		display:flex;
+        		flex-direction:column;
+        		justify-content:center;
+        	}
+        	&__item--active{
+        		//dev
+        		color:red;
+        	}
+        	&__item-content{
+        		display:flex;
+        		flex-direction:column;
+        	}
+        }
+
+        .profile {
+               display: flex;
+               flex-wrap: wrap;
+               padding: 4rem 0;
+           }
+
+           .profile::after {
+               display: none;
+           }
+
+           .profile-image,
+           .profile-user-settings,
+           .profile-bio,
+           .profile-stats {
+               float: none;
+               width: auto;
+           }
+
+           .profile-image img {
+               width: 75%;
+           }
+
+           .profile-user-settings {
+               flex-basis: calc(100% - 10.7rem);
+               display: flex;
+               flex-wrap: wrap;
+               margin-top: 1rem;
+           }
+
+           .profile-user-name-m {
+             display: inline-block;
+           }
+
+           .profile-user-name-d {
+             display: none;
+           }
+
+           .profile-edit-btn {
+               order: 1;
+               padding: 0;
+               text-align: center;
+               margin-top: 1rem;
+           }
+
+           .profile-edit-btn {
+               margin-left: 0;
+           }
+
+           .profile-bio {
+               margin-top: 1.5rem;
+           }
+
+           .profile-edit-btn,
+           .profile-bio,
+           .profile-stats {
+               flex-basis: 100%;
+           }
+
+           .profile-stats {
+               order: 1;
+               margin-top: 1.5rem;
+           }
+
+           .profile-stats ul {
+               display: flex;
+               text-align: center;
+               padding: 1.2rem 0;
+               border-top: 0.1rem solid #dadada;
+               border-bottom: 0.1rem solid #dadada;
+           }
+
+           .profile-stats li {
+               flex: 1;
+               margin: 0;
+           }
+
+           .profile-stat-count {
+               display: block;
+           }
+
+  @supports (display: grid) {
+      .profile {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-template-rows: repeat(3, auto);
+          grid-column-gap: 3rem;
+          align-items: center;
+      }
+
+      .profile-image {
+          grid-row: 1 / -1;
+      }
+
+      .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+          grid-gap: 2rem;
+      }
+
+      .profile-image,
+      .profile-user-settings,
+      .profile-stats,
+      .profile-bio,
+      .gallery-item,
+      .gallery {
+          width: auto;
+          margin: 0;
+      }
+
+      @media (max-width: 40rem) {
+          .profile {
+              grid-template-columns: auto 1fr;
+              grid-row-gap: 1.5rem;
+          }
+
+          .profile-image {
+              grid-row: 1 / 2;
+          }
+
+          .profile-user-settings {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              grid-gap: 1rem;
+          }
+
+          .profile-edit-btn,
+          .profile-stats,
+          .profile-bio {
+              grid-column: 1 / -1;
+          }
+
+          .profile-user-settings,
+          .profile-edit-btn,
+          .profile-settings-btn,
+          .profile-bio,
+          .profile-stats {
+              margin: 0;
+          }
+      }
+       }
+
+      /* iphone XR */
+      @media only screen and (min-device-width : 414px) and (max-device-height : 896px) and (-webkit-device-pixel-ratio : 2) {
+
+       }
+
+     /* iphone XS */
+      @media only screen and (min-device-width : 375px) and (max-device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
+
+       }
+
+     /* iphone XS Max */
+      @media only screen and (min-device-width : 414px) and (max-device-height : 896px) and (-webkit-device-pixel-ratio : 3) {
+
+       }
+
+   @media screen and (max-width: 40rem) {
+
+   }
+
+   /* Spinner Animation */
+
+   @keyframes loader {
+       to {
+           transform: rotate(360deg);
+       }
+   }
+  }

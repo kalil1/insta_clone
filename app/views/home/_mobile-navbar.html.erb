@@ -28,7 +28,7 @@
 <li class="">
 <div class="">
   <%= link_to Profile.find(current_user.profile.id) do %>
-  <img src=" <%= current_user.profile.profile_pic %> " class="instagram-card-user-image"/>
+  <img src=" <%= current_user.profile.profile_pic %> " style="border-radius: 50%;"/>
   <% end %>
 </div>
 </li>
