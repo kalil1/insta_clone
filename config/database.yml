@@ -28,3 +28,7 @@ test:
 production:
   <<: *default
   database: insta_clone_production
+
+staging:
+  <<: *default
+  database: insta_clone_staging
