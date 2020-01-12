@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_12_18_014839) do
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "body"
     t.bigint "post_id"
     t.bigint "profile_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_014839) do
     t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "caption"
     t.bigint "profile_id"
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_014839) do
     t.index ["profile_id"], name: "index_posts_on_profile_id"
   end
 
-  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "website"
     t.text "bio"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_014839) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "unions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "unions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "user1"
     t.integer "user2"
     t.integer "postid"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_014839) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

@@ -6,12 +6,12 @@
 #
 default: &default
   adapter: mysql2
-  database: insta_clone_development
-  password:
-  host: localhost
-  username: root
-  socket: /tmp/mysql.sock
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: UIAA
+  socket: /var/run/mysqld/mysqld.sock
+  host: localhost
   timeout: 5000
 
 development:

@@ -60,5 +60,5 @@ function readURL(input) {
       content_response.style.display = 'block';
     }
   };
-  req.send({"id": post_id});
+  req.send('&id=' + post_id);
 };

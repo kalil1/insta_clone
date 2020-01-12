@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag "posts" %>
+<%= render "navbar" if user_signed_in? && !current_user.profile.nil? %>
+
 <div class="container">
   <ul class="posts">
     <% @posts.sort_by(&:created_at).reverse.each do |post|%>

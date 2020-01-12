@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "profiles" %>
+<%= render "home/navbar" if user_signed_in? && !current_user.profile.nil? %>
 <div class="container">
 <header>
 		<div class="profile">
