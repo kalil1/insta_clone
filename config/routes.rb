@@ -12,15 +12,12 @@ Rails.application.routes.draw do
   post "unfollow", to: 'unions#unfollow'
   resources :profiles
   resources :posts
-  get 'home/index'
+  get 'my_feed', to: 'home#index'
   root 'home#index'
   Rails.application.routes.draw do
   get 'comments/create'
   get 'comments/delete'
   resources :unions
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
