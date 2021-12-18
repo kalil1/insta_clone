@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   mount_uploader :post_img, PostImgUploader
   belongs_to :profile
+  has_one :user, through: :profile
   has_many :comments
 
   def likes
