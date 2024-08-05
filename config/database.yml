@@ -12,7 +12,6 @@ default: &default
   host: <%= ENV['POSTGRES_HOST'] %>
   port: <%= ENV['POSTGRES_PORT'] %>
 
-
 development:
   <<: *default
   database: insta_clone_development

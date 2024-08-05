@@ -1,4 +1,4 @@
-### Ticket_000:
+### Ticket_0:
 
 * [ ] Have you followed the guidelines in our Contributing document?
 * [ ] Does your submission pass tests?
