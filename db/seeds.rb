@@ -53,6 +53,15 @@
     union.updated_at = DateTime.now
     union.save
   end
+  rand((1..10)).times do |p|
+    comment = Comment.new
+    comment.body = Faker::Music::Hiphop.artist
+    comment.profile_id = Profile.all.sample.id
+    comment.post_id = post.id
+    comment.created_at = DateTime.now
+    comment.updated_at = DateTime.now
+    comment.save
+  end
 
   union = Union.new
   union.user1 = rand((1..100))
@@ -63,4 +72,4 @@
   union.save
   p profile
 end
-p 'Done!!'
+p 'Done!!!'

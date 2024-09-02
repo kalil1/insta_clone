@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
-gem 'mysql2'
+gem 'pg'
 gem 'puma', ">= 4.3.9"
 # Use SCSS for stylesheets
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
@@ -40,14 +40,9 @@ group :development, :test do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
-end
-
-group :staging do
-  gem 'rails_12factor'
+  # gem 'selenium-webdriver'
+  # gem 'chromedriver-helper'
 end
 
 group :production do
@@ -55,3 +50,9 @@ group :production do
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "devise", "~> 4.8"
+
+gem "rack-cors", "~> 1.1"
+
+gem 'active_model_serializers', '~> 0.10.0'
