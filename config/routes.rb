@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   resources :posts
   get 'my_feed', to: 'home#index'
   root 'home#index'
-  Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/delete'
+  resources :users do
+    collection do
+      get 'recommended'
+      get 'search'
+    end
+  end
   resources :unions
-end
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
