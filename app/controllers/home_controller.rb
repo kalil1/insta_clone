@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @posts = Post.all.last 12
+    render :json => Post.all.includes(:comments, :user)
   end
 end
