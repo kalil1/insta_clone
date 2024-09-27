@@ -8,7 +8,7 @@
 - Uses Ruby on Rails, a framework well-suited for building APIs.
 - Manages data persistence through a PostgreSQL database.
 - Offers endpoints that the React frontend can interact with.
-### Employs Ruby gems like Devise (for user authentication), Faker (for generating dummy data), and CarrierWave (for handling image uploads) to provide key functionalities.●
+### Employs Ruby gems like Devise (for user authentication), Faker (for generating dummy data), and CarrierWave (for handling image uploads) to provide key functionalities.
 - React Frontend (Client-Side):
 - Provides the user interface (UI) that users directly interact with.
 - Built using React, a JavaScript library known for building dynamic and interactive user interfaces.
