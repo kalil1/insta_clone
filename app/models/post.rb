@@ -3,15 +3,15 @@ class Post < ApplicationRecord
   belongs_to :profile
   has_many :comments
 
-  def likes
+  def unions
     Union.where(postid: self.id, union_type: "like")
   end
 
+  def likes
+    unions.count
+  end
+
   def liked(user1)
-    if Union.where(postid: self.id, union_type: "like", user1: user1.id)[0]
-      return true
-    else
-      return false
-    end
+    unions.find(user1.id) ? true : false;
   end
 end
