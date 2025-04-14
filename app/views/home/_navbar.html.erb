@@ -14,7 +14,7 @@
     <%= link_to posts_path do %>
     <i class="fa fa-heart"></i>
     <% end %>
-    <%= link_to_if !user_signed_in?, {}, {} do %>
+    <%= link_to_if false, {}, {} do %>
       <a href="<%= profile_path(current_user.profile.id) %>" class='fa fa-user'></a>
     <% end %>
   </section>

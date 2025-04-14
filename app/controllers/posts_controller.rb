@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    render json: @post,
+    serializer: PostSerializer
   end
 
   def new
