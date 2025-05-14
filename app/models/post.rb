@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   mount_uploader :post_img, PostImgUploader
   belongs_to :profile
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def unions
     Union.where(postid: self.id, union_type: "like")

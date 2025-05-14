@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
-    posts = Post.all
+    posts = Post.includes(:profile, comments: :profile).order(created_at: :desc)
     render json: posts, each_serializer: PostSerializer
   end
 
