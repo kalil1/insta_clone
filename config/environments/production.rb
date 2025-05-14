@@ -27,7 +27,8 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
+  config.assets.digest = false
   config.assets.js_compressor = nil
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -64,7 +65,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "insta_clone_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  # config.assets.initialize_on_precompile = false
+  config.assets.initialize_on_precompile = false
   
 
   # Ignore bad email addresses and do not raise email delivery errors.
