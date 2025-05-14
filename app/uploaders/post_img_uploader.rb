@@ -15,10 +15,7 @@ class PostImgUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
-    # For Rails 3.1+ asset pipeline compatibility:
-    ActionController::Base.helpers.asset_path([version_name, "no_image.png"].compact.join('_'))
-
-    # "assets/images/" +[version_name, "missing.jpeg"].compact.join('_')
+    ActionController::Base.helpers.image_path([version_name, "no_image.png"].compact.join('_'))
   end
 
   # Process files as they are uploaded:
