@@ -5,8 +5,8 @@ class PostSerializer < ActiveModel::Serializer
              :post_img,
              :likess
 
-
-
+  belongs_to :profile
+  has_many :comments
 def likess
   object.likes
 end
