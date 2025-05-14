@@ -10,7 +10,7 @@ gem 'rails', '~> 7.0'
 gem 'pg'
 gem 'puma', ">= 4.3.9"
 # Use SCSS for stylesheets
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'faker'
 gem 'carrierwave', '~> 2.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
