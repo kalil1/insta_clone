@@ -7,14 +7,12 @@ gem 'rails', '~> 7.1.3'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
 gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
-gem 'turbolinks'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Heroku deployment
