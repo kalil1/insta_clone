@@ -14,7 +14,7 @@ gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
-gem 'bootsnap' 
+gem 'bootsnap', '>= 1.4.4', require: false
 
 # Heroku deployment
 gem 'rails_12factor', group: :production
