@@ -8,7 +8,7 @@ gem 'rails', '~> 7.0'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'pg'
-gem 'puma', ">= 4.3.9"
+gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'faker'
 gem 'carrierwave', '~> 2.0'
@@ -38,8 +38,9 @@ gem 'bootsnap'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '~> 3.7' # or at least 3.5
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capybara', '>= 2.15'
   # gem 'selenium-webdriver'
   # gem 'chromedriver-helper'
