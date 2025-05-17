@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'comments/delete'
   resources :asses
   post "comment", to: 'comments#create'
+  post '/generate_presigned_url', to: 'uploads#generate_presigned_url'
   get "post/comments", to: 'comments#post_comments'
   post "post/comments", to: 'comments#post_comments'
   post "uncomment", to: 'comments#delete'

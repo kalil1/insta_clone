@@ -16,6 +16,8 @@ gem 'rack-cors'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave'
 gem 'faker'
+gem 'aws-sdk-s3'
+
 
 # Heroku deployment
 gem 'rails_12factor', group: :production
