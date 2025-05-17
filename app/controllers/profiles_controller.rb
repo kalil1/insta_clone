@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   def update
-    if @profile.update(profile_params)
+    if @profile.update(profile_params.merge(profile_pic: profile_params[:profile_pic]))
       render json: @profile, status: :ok
     else
       render json: @profile.errors, status: :unprocessable_entity
@@ -49,6 +49,6 @@ class ProfilesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def profile_params
-    params.require(:profile).permit(:name, :website, :bio, :phone, :profile_pic, :user_id)
+    params.require(:profile).permit(:name, :website, :bio, :phone, :profile_pic)
   end
 end
