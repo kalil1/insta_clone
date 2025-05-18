@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :caption, :post_img_url, :likes
+  attributes :id, :caption, :post_img, :likes
 
   belongs_to :profile
   has_many :comments
