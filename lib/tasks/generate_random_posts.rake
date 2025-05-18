@@ -3,7 +3,9 @@ namespace :db do
   task generate_random_posts: :environment do
     puts "🖼 Generating random posts for all profiles..."
 
-    base_url = "https://cal1.s3.us-east-2.amazonaws.com/posts/random_post"
+    base_url = ENV['S3_BASE_URL']
+    raise "Missing ENV['S3_BASE_URL']" if base_url.blank?
+
     image_variants = (1..10).to_a.map { |i| "r#{i}.jpeg" }
 
     Profile.find_each do |profile|
@@ -16,7 +18,7 @@ namespace :db do
 
         profile.posts.create!(
           caption: Faker::Lorem.sentence(word_count: 8),
-          post_img: { url: post_img_url }
+          post_img: post_img_url 
         )
       end
     end
@@ -28,15 +30,17 @@ namespace :db do
   task reassign_post_images: :environment do
     puts "🔁 Reassigning random post images to all existing posts..."
 
-    base_url = "https://cal1.s3.us-east-2.amazonaws.com/posts/random_post"
+    base_url = ENV['S3_BASE_URL']
+    raise "Missing ENV['S3_BASE_URL']" if base_url.blank?
+
     image_variants = (1..10).to_a.map { |i| "r#{i}.jpeg" }
 
-    Post.find_each do |post|
+    Post.all.each do |post|
       filename = image_variants.sample
       new_img_url = "#{base_url}/#{filename}"
 
-      post.update!(post_img: { url: new_img_url })
-      puts "🖼 Updated Post ID #{post.id} with new image: #{filename}"
+      post.update!(post_img: new_img_url )
+      puts "🖼 Updated Post ID #{post.id} with new image: #{post.post_img}"
     end
 
     puts "✅ All posts updated with new images!"
@@ -46,14 +50,16 @@ namespace :db do
   task reassign_profile_pics: :environment do
     puts "🔁 Reassigning random profile pictures to all profiles..."
 
-    base_url = "https://cal1.s3.us-east-2.amazonaws.com/posts/random_post"
+    base_url = ENV['S3_BASE_URL']
+    raise "Missing ENV['S3_BASE_URL']" if base_url.blank?
+
     image_variants = (1..10).to_a.map { |i| "r#{i}.jpeg" }
 
     Profile.find_each do |profile|
       filename = image_variants.sample
       new_pic_url = "#{base_url}/#{filename}"
 
-      profile.update!(profile_pic: { url: new_pic_url })
+      profile.update!(profile_pic:  new_pic_url )
       puts "👤 Updated Profile ID #{profile.id} with new picture: #{filename}"
     end
 
