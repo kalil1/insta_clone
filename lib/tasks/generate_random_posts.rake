@@ -23,4 +23,22 @@ namespace :db do
 
     puts "✅ Done creating posts for all profiles!"
   end
+
+  desc "Assign a new random post_img to each existing post"
+  task reassign_post_images: :environment do
+    puts "🔁 Reassigning random post images to all existing posts..."
+
+    base_url = "https://cal1.s3.us-east-2.amazonaws.com/posts/random_post"
+    image_variants = (1..10).to_a.map { |i| "r#{i}.jpeg" }
+
+    Post.find_each do |post|
+      filename = image_variants.sample
+      new_img_url = "#{base_url}/#{filename}"
+
+      post.update!(post_img: { url: new_img_url })
+      puts "🖼 Updated Post ID #{post.id} with new image: #{filename}"
+    end
+
+    puts "✅ All posts updated with new images!"
+  end
 end
