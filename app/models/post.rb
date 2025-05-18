@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-  mount_uploader :post_img, PostImgUploader
   belongs_to :profile
   has_many :comments, dependent: :destroy
 
