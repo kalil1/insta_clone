@@ -10,6 +10,12 @@ class PostsController < ApplicationController
     render json: @post, serializer: PostSerializer
   end
 
+  def explore_page
+    # Will make more complex later when user auth is a thing in this project
+    posts = Post.includes(:profile, comments: :profile).order(created_at: :desc).limit(30)
+    render json: posts, each_serializer: PostSerializer
+  end
+
   def create
     post = Post.new(post_params)
     post.profile = current_user.profile
