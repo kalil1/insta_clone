@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :asses
   post "comment", to: 'comments#create'
   post '/generate_presigned_url', to: 'uploads#generate_presigned_url'
+  get "explore_page", to: 'posts#explore_page'
   get "post/comments", to: 'comments#post_comments'
   post "post/comments", to: 'comments#post_comments'
   post "uncomment", to: 'comments#delete'
