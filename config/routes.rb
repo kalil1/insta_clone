@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post "post/comments", to: 'comments#post_comments'
   post "uncomment", to: 'comments#delete'
   post "like", to: 'unions#like'
+  get 'profiles/search', to: 'profiles#search'
   post "follow", to: 'unions#follow'
   post "unlike", to: 'unions#unlike'
   post "unfollow", to: 'unions#unfollow'
