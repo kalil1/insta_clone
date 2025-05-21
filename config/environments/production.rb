@@ -67,10 +67,9 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.assets.initialize_on_precompile = false
   
-#   config.action_cable.allowed_request_origins = [
-#   'https://production-domain.com',
-#   /https:\/\/subdomains\.com.*/ 
-# ]
+  config.action_cable.allowed_request_origins = [
+    %r{https?://main\.d2h7lokr96gx31\.amplifyapp\.com}
+  ]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
