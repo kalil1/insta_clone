@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :post_comments]
 
   def create
-    comment = @post.comments.new(
-      profile: current_user.profile,
-      body: params[:body]
-    )
+    comment = @post.comments.new(comment_params)
 
     if comment.save
-      render json: comment, status: :created
+      serialized = CommentSerializer.new(comment).serializable_hash
+      CommentChannel.broadcast_to(comment.post, serialized)
+      render json: serialized, status: :created
+      # render json: comment, status: :created
     else
       render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
     end
@@ -32,8 +32,12 @@ class CommentsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:post_id] || params[:id])
+    @post = Post.find(params[:post_id])
   rescue ActiveRecord::RecordNotFound
     render json: { error: "Post not found" }, status: :not_found
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body, :profile_id, :post_id)
   end
 end

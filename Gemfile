@@ -17,6 +17,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave'
 gem 'faker'
 gem 'aws-sdk-s3'
+gem 'redis', '~> 4.0'
 
 
 # Heroku deployment
