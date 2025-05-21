@@ -8,4 +8,6 @@ test:
 production:
   adapter: redis
   url: <%= ENV["REDIS_URL"] %>
+  ssl_params:
+    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
   channel_prefix: insta_clone_production
