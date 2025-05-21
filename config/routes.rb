@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/delete'
-  resources :asses
-  post "comment", to: 'comments#create'
+  # post "comment", to: 'comments#create'
+  # get "explore_page", to: 'posts#explore_page'
+  # get "post/comments", to: 'comments#post_comments'
+  # post "post/comments", to: 'comments#post_comments'
+  # post "uncomment", to: 'comments#delete'       Not sure what I was doing here but this projest is 6 years old
+  mount ActionCable.server => '/cable'
+  resources :comments
   post '/generate_presigned_url', to: 'uploads#generate_presigned_url'
-  get "explore_page", to: 'posts#explore_page'
-  get "post/comments", to: 'comments#post_comments'
-  post "post/comments", to: 'comments#post_comments'
-  post "uncomment", to: 'comments#delete'
   post "like", to: 'unions#like'
   get 'profiles/search', to: 'profiles#search'
   post "follow", to: 'unions#follow'
