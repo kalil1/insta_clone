@@ -70,7 +70,7 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     %r{https?://main\.d2h7lokr96gx31\.amplifyapp\.com}
   ]
-
+  config.action_cable.url = "wss://#{ENV['APP_HOST'] || 'instaclon-60232e96bbaa.herokuapp.com'}/cable"
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
