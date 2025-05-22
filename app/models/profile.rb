@@ -1,14 +1,12 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  def username
-    self.user.username
-  end
+  delegate :username, to: :user
 
-  def post
-    self.posts.count
+  def post_count
+    posts.size
   end
 
   def followers
@@ -19,14 +17,9 @@ class Profile < ApplicationRecord
     Union.where(user1: self.id, union_type: "follow")
   end
 
-  def following(user1)
-    if Union.where(user2: self.id, union_type: "follow", user1: user1.id)[0]
-      return "following"
-    else if self.id == user1.id
-      return "me"
-    else
-      return "not_following"
-    end
+  def following_status(current_user)
+    return "me" if self.id == current_user.id
+    Union.exists?(user2: self.id, user1: current_user.id, union_type: "follow") ? "following" : "not_following"
   end
 end
-end
+
