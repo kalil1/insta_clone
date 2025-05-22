@@ -10,7 +10,7 @@ class Post < ApplicationRecord
     unions.count
   end
 
-  def liked(user1)
-    unions.find(user1.id) ? true : false;
+  def liked?(user_id)
+    Union.exists?(postid: id, user1: user_id, union_type: "like")
   end
 end
