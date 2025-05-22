@@ -1,13 +1,9 @@
 class HomeController < ApplicationController
   def index
-    posts = Post.limit(15).order('RANDOM()')
+    posts = Post.includes(:profile, comments: :profile)
+                .order('RANDOM()')
+                .limit(15)
 
-    render json: posts, methods: :likes, include: {
-      profile: { only: :name },
-      comments: {
-        include: { profile: { only: :name } },
-        only: :body
-      }
-    }
+    render json: posts, each_serializer: PostSerializer
   end
 end
