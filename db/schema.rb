@@ -1,5 +1,5 @@
 # This file is auto-generated from the current state of the database. Instead
-# o editing this file, please use the migrations feature of Active Record to
+# of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
 # This file is the source Rails uses to define your schema when running `bin/rails
@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2019_12_18_014839) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_22_162139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,9 @@ ActiveRecord::Schema[7.0].define(version: 2019_12_18_014839) do
     t.string "union_type", default: "like"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["postid", "union_type"], name: "index_unions_on_postid_and_union_type"
+    t.index ["postid", "user1", "union_type"], name: "index_unions_on_postid_and_user1_and_union_type"
+    t.index ["user1", "union_type"], name: "index_unions_on_user1_and_union_type"
   end
 
   create_table "users", force: :cascade do |t|
