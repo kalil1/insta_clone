@@ -1,66 +1,76 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#  page = HTTParty.get("https://www.google.com/search?hl=en&tbm=isch&sxsrf=ACYBGNSDltC4Bic-to6YlNkIw2He6gLADw%3A1573781698049&source=hp&biw=1440&bih=821&ei=wQDOXd_vPILWtQWc4KvgAQ&q=#{}&oq=&gs_l=img.3.0.35i362i39l10.0.0..7536...0.0..0.304.304.3-1......0......gws-wiz-img.....10.xS-sKzwvNEI")
-#  nokogiri_page = Nokogiri::HTML(page)
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "🧹 Cleaning database..."
 
+Comment.destroy_all
+Union.destroy_all
+Post.destroy_all
+Profile.destroy_all
+User.destroy_all
 
+puts "🌱 Seeding database..."
 
-  user = User.new
-  user.email = "wkalil47@gmail.com"
-  user.username = "kalil_3"
-  user.password = 'password'
-  user.password_confirmation = 'password'
-  user.encrypted_password = '#$taawktljasktlw4aaglj'
-  user.save
+# Create a specific user with profile
+main_user = User.create!(
+  email: "wkalil77@gmail.com",
+  username: "kalil_3",
+  password: "password",
+  password_confirmation: "password"
+)
 
-  100.times do |n|
-  user = User.new
-  user.email = Faker::Internet.email
-  user.username = Faker::Internet.username(separators: %w(. _ -)) + n.to_s
-  user.password = 'valid_password'
-  user.password_confirmation = 'valid_password'
-  user.encrypted_password = '#$taawktljasktlw4aaglj'
-  user.save
+Profile.create!(
+  name: "Kalil Williams",
+  website: "https://kalil.dev",
+  bio: "Founder. Engineer. Dreamer.",
+  phone: Faker::PhoneNumber.cell_phone,
+  user: main_user
+)
 
-  profile = Profile.new
-  profile.id = n
-  profile.name = Faker::Name.name
-  profile.website = Faker::Internet.url
-  profile.bio = Faker::Quote.famous_last_words
-  profile.phone = Faker::PhoneNumber.cell_phone
-  profile.user_id = user.id
-  profile.created_at = DateTime.now
-  profile.updated_at = DateTime.now
-  profile.save
+# Create 100 users with profiles, posts, comments
+100.times do
+  user = User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Internet.username(separators: %w(. _ -)),
+    password: "valid_password",
+    password_confirmation: "valid_password"
+  )
 
-  post = Post.new
-  post.id = n
-  post.caption = Faker::Quotes::Shakespeare.hamlet_quote
-  post.profile_id = profile.id
-  post.created_at = DateTime.now
-  post.updated_at = DateTime.now
-  post.save
-  rand((1..100)).times do |p|
-    union = Union.new
-    union.user1 = rand((1..100))
-    union.user2 = rand((1..100))
-    union.postid = post.id
-    union.created_at = DateTime.now
-    union.updated_at = DateTime.now
-    union.save
+  profile = Profile.create!(
+    name: Faker::Name.name,
+    website: Faker::Internet.url,
+    bio: Faker::Quote.famous_last_words,
+    phone: Faker::PhoneNumber.cell_phone,
+    user: user
+  )
+
+  post = Post.create!(
+    caption: Faker::Quotes::Shakespeare.hamlet_quote,
+    profile: profile
+  )
+
+  # Create random comments for the post
+  rand(1..10).times do
+    commenter_profile = Profile.order("RANDOM()").first
+    Comment.create!(
+      body: Faker::Music::Hiphop.artist,
+      profile: commenter_profile,
+      post: post
+    )
   end
 
-  union = Union.new
-  union.user1 = rand((1..100))
-  union.user2 = rand((1..100))
-  union.union_type = "follow"
-  union.created_at = DateTime.now
-  union.updated_at = DateTime.now
-  union.save
-  p profile
+  # Create random "follow" unions
+  Union.create!(
+    user1: User.pluck(:id).sample,
+    user2: User.pluck(:id).sample,
+    union_type: "follow"
+  )
+
+  # Create post-related unions
+  rand(1..3).times do
+    Union.create!(
+      user1: User.pluck(:id).sample,
+      user2: User.pluck(:id).sample,
+      postid: post.id
+    )
+  end
 end
-p 'Done!!'
+
+puts "✅ Done seeding!"

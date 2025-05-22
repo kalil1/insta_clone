@@ -1,5 +1,24 @@
 # README# INSTACLONE
-INSTACLONE is one of my personal projects, it's a clone of instagram I work on in my spare time. Allowing users to sign up, create a profile, follow or unfollow other users, upload post, like post & comment on them . My goal for this application is to replicate all of instagram's features using Ruby on Rails.  
+
+## InstaClone Architecture: A Rails API and React Frontend Collaboration
+- InstaClone is designed with a two-part architecture, using a Rails API for the backend and a React Frontend for the client-side application. This structure means that the user interacts with the React frontend, which communicates with the Rails API to fetch and send data.
+- Here’s how the components work together
+### Rails API (Backend):
+- Handles the core application logic, data storage, and processing.
+- Uses Ruby on Rails, a framework well-suited for building APIs.
+- Manages data persistence through a PostgreSQL database.
+- Offers endpoints that the React frontend can interact with.
+### Employs Ruby gems like Devise (for user authentication), Faker (for generating dummy data), and CarrierWave (for handling image uploads) to provide key functionalities.
+- React Frontend (Client-Side):
+- Provides the user interface (UI) that users directly interact with.
+- Built using React, a JavaScript library known for building dynamic and interactive user interfaces.
+- Communicates with the Rails API to request data and perform actions.
+### Renders the received data from the API into visually appealing components.
+- User Experience:
+- When a user interacts with the InstaClone application, their actions on the React frontend trigger requests to the Rails API.
+- The Rails API processes these requests, interacts with the database if needed, and sends back the appropriate response.
+- The React frontend then takes this response and updates the UI accordingly, creating a seamless and dynamic experience for the user.
+- This separation of concerns, with the backend handling data and logic, and the frontend managing the user interface, makes InstaClone a scalable and maintainable application.
 
 
 ## Technologies & RubyGems

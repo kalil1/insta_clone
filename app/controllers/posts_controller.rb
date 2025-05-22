@@ -1,57 +1,52 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy]
+  # Will make more complex later when user auth is a thing in this project
 
   def index
-    @posts = Post.all
+    posts = Post.includes(:profile, comments: :profile).order(created_at: :desc).limit(15)
+    render json: posts, each_serializer: PostSerializer
   end
 
   def show
+    render json: @post, serializer: PostSerializer
   end
 
-  def new
-    @post = Post.new
-  end
-
-  def edit
+  def explore_page
+    posts = Post.includes(:profile, comments: :profile).order(created_at: :desc).limit(30)
+    render json: posts, each_serializer: PostSerializer
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.profile = current_user.profile
+    post = Post.new(post_params)
+    post.profile = current_user.profile
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to current_user.profile, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: current_user.profile }
-      end
+    if post.save
+      render json: post, serializer: PostSerializer, status: :created
+    else
+      render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to current_user.profile, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: current_user.profile }
-      end
+    if @post.update(post_params)
+      render json: @post, serializer: PostSerializer, status: :ok
+    else
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:caption, :post_img)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:caption, :post_img)
+  end
 end
