@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :profile
+  has_one :user, through: :profile
   has_many :comments, dependent: :destroy
 
   def unions
