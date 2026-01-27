@@ -18,6 +18,7 @@ gem 'carrierwave'
 gem 'faker'
 gem 'aws-sdk-s3'
 gem 'redis', '~> 4.0'
+gem 'uglifier'
 
 
 # Heroku deployment
