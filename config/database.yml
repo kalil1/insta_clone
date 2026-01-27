@@ -6,18 +6,10 @@ default: &default
 development:
   <<: *default
   database: insta_clone_development
-  username: <%= ENV.fetch("INSTA_DB_USER", "postgres") %>
-  password: <%= ENV.fetch("INSTA_DB_PASSWORD", "") %>
-  host: <%= ENV.fetch("INSTA_DB_HOST", "localhost") %>
-  port: <%= ENV.fetch("INSTA_DB_PORT", 5432) %>
 
 test:
   <<: *default
   database: insta_clone_test
-  username: <%= ENV.fetch("INSTA_DB_USER", "postgres") %>
-  password: <%= ENV.fetch("INSTA_DB_PASSWORD", "") %>
-  host: <%= ENV.fetch("INSTA_DB_HOST", "localhost") %>
-  port: <%= ENV.fetch("INSTA_DB_PORT", 5432) %>
 
 staging:
   <<: *default
