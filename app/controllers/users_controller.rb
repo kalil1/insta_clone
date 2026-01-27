@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   
     def recommended
       users = User.limit(5).order('RANDOM()') # Example logic for recommendations
-      render json: users, each_serializer: UserSerializer
+      render json: users, each_serializer: UserSerializer, s3_healthy: s3_healthy?
     end
   
     private

@@ -1,4 +1,13 @@
 class ProfileSerializer < ActiveModel::Serializer
-  attributes :id, :name, :website, :bio, :phone, :profile_pic
+  include ImageFallbackable
 
+  attributes :id, :name, :bio, :profile_pic
+
+  def s3_healthy?
+    instance_options[:s3_healthy] != false
+  end
+
+  def profile_pic
+    image_with_fallback(object.profile_pic)
+  end
 end
