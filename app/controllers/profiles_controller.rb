@@ -7,8 +7,22 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @posts = Post.where(profile_id: @profile.id).order(created_at: :desc)
-    render json: { profile: @profile, posts: @posts }
+    posts = Post.includes(:profile, comments: :profile)
+                .where(profile_id: @profile.id)
+                .order(created_at: :desc)
+
+    render json: {
+      profile: ActiveModelSerializers::SerializableResource.new(
+        @profile,
+        serializer: ProfileSerializer,
+        s3_healthy: s3_healthy?
+      ),
+      posts: ActiveModelSerializers::SerializableResource.new(
+        posts,
+        each_serializer: PostSerializer,
+        s3_healthy: s3_healthy?
+      )
+    }
   end
 
   def create
@@ -25,8 +39,18 @@ class ProfilesController < ApplicationController
   def search
     if params[:query].present?
       search_term = params[:query].downcase
-      matching_profiles = Profile.where('LOWER(name) LIKE ?', "%#{search_term}%").limit(5)
-      render json: { profiles: matching_profiles }, status: :ok
+  
+      matching_profiles = Profile
+        .where('LOWER(name) LIKE ?', "%#{search_term}%")
+        .limit(5)
+  
+      render json: {
+        profiles: ActiveModelSerializers::SerializableResource.new(
+          matching_profiles,
+          each_serializer: ProfileSerializer,
+          s3_healthy: s3_healthy?
+        )
+      }, status: :ok
     else
       render json: { error: 'Query parameter is required' }, status: :bad_request
     end

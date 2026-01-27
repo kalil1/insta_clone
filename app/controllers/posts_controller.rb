@@ -4,16 +4,16 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.includes(:profile, comments: :profile).order(created_at: :desc).limit(15)
-    render json: posts, each_serializer: PostSerializer
+    render json: posts, each_serializer: PostSerializer, s3_healthy: s3_healthy?
   end
 
   def show
-    render json: @post, serializer: PostSerializer
+    render json: @post, serializer: PostSerializer, s3_healthy: s3_healthy?
   end
 
   def explore_page
     posts = Post.includes(:profile, comments: :profile).order(created_at: :desc).limit(30)
-    render json: posts, each_serializer: PostSerializer
+    render json: posts, each_serializer: PostSerializer, s3_healthy: s3_healthy?
   end
 
   def create
