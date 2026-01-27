@@ -28,6 +28,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.action_cable.allowed_request_origins = [
+  "http://localhost:3000",
+  "http://localhost:5000"
+]
+config.action_cable.url = "wss://#{ENV['APP_HOST'] || 'localhost:5000'}/cable"
+
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 

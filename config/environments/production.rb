@@ -68,9 +68,10 @@ Rails.application.configure do
   config.assets.initialize_on_precompile = false
   
   config.action_cable.allowed_request_origins = [
-    %r{https?://main\.d2h7lokr96gx31\.amplifyapp\.com}
+    "https://main.d2p2866s5ggn64.amplifyapp.com",
+    /https:\/\/.*\.amplifyapp\.com/
   ]
-  config.action_cable.url = "wss://#{ENV['APP_HOST'] || 'instaclon-60232e96bbaa.herokuapp.com'}/cable"
+  config.action_cable.url = "wss://#{ENV['APP_HOST'] || 'instaclone-prod-0401ffbc7919.herokuapp.com'}/cable"
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
