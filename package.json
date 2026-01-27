@@ -1,5 +1,10 @@
 {
   "name": "insta_clone",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": { "start": "node index.js" },
+  "engines": {
+    "node": "18.x",
+    "yarn": "1.x"
+  }
 }

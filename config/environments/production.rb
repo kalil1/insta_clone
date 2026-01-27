@@ -23,12 +23,13 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.compile = true
+  config.assets.digest = false
+  config.assets.js_compressor = nil
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -66,7 +67,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.assets.initialize_on_precompile = false
   
-
+  config.action_cable.allowed_request_origins = [
+    %r{https?://main\.d2h7lokr96gx31\.amplifyapp\.com}
+  ]
+  config.action_cable.url = "wss://#{ENV['APP_HOST'] || 'instaclon-60232e96bbaa.herokuapp.com'}/cable"
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

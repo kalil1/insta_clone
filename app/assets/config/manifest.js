@@ -1,3 +1,2 @@
-//= link_tree ../images
-//= link_directory ../javascripts .js
-//= link_directory ../stylesheets .css
+//= link no_image.png
+//= link no_avatar.png
